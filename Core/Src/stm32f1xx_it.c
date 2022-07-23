@@ -199,5 +199,7 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /* USER CODE BEGIN 1 */
-
+__weak void EXTI0_IRQHandler(){
+    UNUSED(GPIO_PIN_0);
+}
 /* USER CODE END 1 */
