@@ -40,6 +40,11 @@
 #define INIT init();
 #define START start();
 
+#elif defined __HAL_USART1_USE__ /*串口收发信息1*/
+#include "6usart/usart.h"
+#define INIT init();
+#define START start();
+
 #endif
 
 #endif //LEARN_TITLE_H
