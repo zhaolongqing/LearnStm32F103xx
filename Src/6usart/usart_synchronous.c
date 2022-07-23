@@ -35,6 +35,7 @@ void init() {
     __HAL_RCC_USART1_CLK_ENABLE();
 
     // 2.设置USART的工作模式
+    uartHandleTypeDef.Instance = USART1;
     uartHandleTypeDef.Init.BaudRate = 9600;
     uartHandleTypeDef.Init.Parity = USART_PARITY_NONE;
     uartHandleTypeDef.Init.StopBits = USART_STOPBITS_1;
