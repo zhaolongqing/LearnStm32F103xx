@@ -12,6 +12,8 @@ UART_HandleTypeDef uartHandleTypeDef = {0};
 
 uint8_t data;
 
+volatile int i = 0;
+
 void deviceHandle() {
     uint8_t txBuf[100];
 
@@ -25,7 +27,16 @@ void deviceHandle() {
     HAL_UART_Transmit(&uartHandleTypeDef, txBuf, strlen((char *) txBuf), 1000);
 
     // 接收数据中断并进入回调函数
-    HAL_UART_Receive_IT(&uartHandleTypeDef, &data, 1);
+    HAL_StatusTypeDef status = HAL_UART_Receive_IT(&uartHandleTypeDef, &data, 1);
+    if (status == HAL_OK){
+        i = 1;
+    } else if (status == HAL_ERROR) {
+        i = 2;
+    } else if (status == HAL_BUSY) {
+        i = 3;
+    } else if (status == HAL_TIMEOUT) {
+        i = 4;
+    }
 }
 
 void init() {
@@ -87,6 +98,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
 }
 
 void start() {}
+
+void USART1_IRQHandler() {
+    HAL_UART_IRQHandler(&uartHandleTypeDef);
+}
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     HAL_UART_Transmit(huart, &data, 1, 0);
