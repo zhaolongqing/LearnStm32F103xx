@@ -206,4 +206,8 @@ __weak void EXTI0_IRQHandler(){
 __weak void EXTI15_10_IRQHandler(){
     UNUSED(GPIO_PIN_0);
 }
+
+__weak void USART1_IRQHandler() {
+    UNUSED(GPIO_PIN_0);
+}
 /* USER CODE END 1 */

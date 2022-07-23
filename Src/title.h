@@ -40,8 +40,8 @@
 #define INIT init();
 #define START start();
 
-#elif defined __HAL_USART1_USE__ /*串口收发信息1*/
-#include "6usart/usart.h"
+#elif defined __HAL_USART1_USE__ /*同步串口收发信息1*/
+#include "6usart/usart_synchronous.h"
 #define INIT init();
 #define START start();
 

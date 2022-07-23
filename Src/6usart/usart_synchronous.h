@@ -1,5 +1,6 @@
 //
 // Created by ZlqPC on 2022/7/23.
+// 同步串口
 //
 
 #include "../root_select.h"
