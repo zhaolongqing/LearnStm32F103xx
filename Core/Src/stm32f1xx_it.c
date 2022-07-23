@@ -202,4 +202,8 @@ void SysTick_Handler(void)
 __weak void EXTI0_IRQHandler(){
     UNUSED(GPIO_PIN_0);
 }
+
+__weak void EXTI15_10_IRQHandler(){
+    UNUSED(GPIO_PIN_0);
+}
 /* USER CODE END 1 */

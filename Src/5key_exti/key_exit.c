@@ -85,8 +85,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
             LED_TOGGLE(LED1);
         }
     } else if (GPIO_Pin == KEY2.PIN) {
+        HAL_Delay(20);
         if (KEY_STATE(KEY2) == GPIO_PIN_RESET) {
-            LED_TOGGLE(KEY2);
+            LED_TOGGLE(LED2);
         }
     }
 }

@@ -6,6 +6,6 @@
 #define LEARN_ROOT_SELECT_H
 
 /* 选择功能 */
-#define __KEY_SHAKE_H_USE__
+#define __HAL_KEY_EXIT_USE__
 
 #endif //LEARN_ROOT_SELECT_H
