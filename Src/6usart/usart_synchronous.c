@@ -39,6 +39,9 @@ void deviceHandle() {
     }
 }
 
+
+void start() {}
+
 void init() {
 
     // 注：启用时钟先启用总的APB2外设时钟再启用下面的时钟一步一步
@@ -88,6 +91,10 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart) {
     }
 }
 
+/**
+ * 反初始化
+ * @param huart
+ */
 void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
     if (huart->Instance == USART1) {
         __HAL_RCC_USART1_CLK_DISABLE();
@@ -97,12 +104,17 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
     }
 }
 
-void start() {}
-
+/**
+ * 回调中断函数
+ */
 void USART1_IRQHandler() {
     HAL_UART_IRQHandler(&uartHandleTypeDef);
 }
 
+/**
+ * 处理中断函数
+ * @param huart
+ */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     HAL_UART_Transmit(huart, &data, 1, 0);
     HAL_UART_Receive_IT(huart, &data, 1);
