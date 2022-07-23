@@ -40,14 +40,14 @@ void init() {
             .Speed = GPIO_SPEED_FREQ_LOW,
             .Pin = KEY1.PIN,
             .Mode = GPIO_MODE_INPUT,
-            .Pull = GPIO_PULLUP
+            .Pull = GPIO_PULLDOWN
     };
     HAL_GPIO_Init(KEY1.GPIO, &key1);
     GPIO_InitTypeDef key2 = {
             .Speed = GPIO_SPEED_FREQ_LOW,
             .Pin = KEY2.PIN,
             .Mode = GPIO_MODE_INPUT,
-            .Pull = GPIO_PULLDOWN
+            .Pull = GPIO_PULLUP
     };
     HAL_GPIO_Init(KEY2.GPIO, &key2);
 
