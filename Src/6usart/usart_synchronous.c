@@ -120,4 +120,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     HAL_UART_Receive_IT(huart, &data, 1);
 }
 
-#endif
+/**
+ * 处理错误中断函数
+ * @param huart
+ */
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
+    huart->ErrorCode;
+}
+
+#endif;
