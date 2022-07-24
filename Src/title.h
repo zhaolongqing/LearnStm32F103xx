@@ -45,6 +45,11 @@
 #define INIT init();
 #define START start();
 
+#elif defined __USART_PRINT_USE__ /*日志打印*/
+#include "6usart/usart_print.h"
+#define INIT init();
+#define START start();
+
 #endif
 
 #endif //LEARN_TITLE_H

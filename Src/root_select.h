@@ -6,6 +6,6 @@
 #define LEARN_ROOT_SELECT_H
 
 /* 选择功能 */
-#define __HAL_USART1_USE__
+#define __USART_PRINT_USE__
 
 #endif //LEARN_ROOT_SELECT_H
