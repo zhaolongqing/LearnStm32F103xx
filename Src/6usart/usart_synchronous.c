@@ -128,4 +128,4 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart) {
     huart->ErrorCode;
 }
 
-#endif;
+#endif
