@@ -12,15 +12,15 @@ GPIO_InitTypeDef gpioInitTypeDef;
 // 初始化串口
 void init() {
     __HAL_RCC_USART1_CLK_ENABLE();
-    uartHandleTypeDef.Instance = USART1;
-    uartHandleTypeDef.Init.BaudRate = 9600;
-    uartHandleTypeDef.Init.StopBits = UART_STOPBITS_1;
-    uartHandleTypeDef.Init.Parity = UART_PARITY_NONE;
-    uartHandleTypeDef.Init.WordLength = UART_WORDLENGTH_8B;
-    uartHandleTypeDef.Init.OverSampling = UART_OVERSAMPLING_16;
-    uartHandleTypeDef.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-    uartHandleTypeDef.Init.Mode = UART_MODE_TX_RX;
-    HAL_UART_Init(&uartHandleTypeDef);
+    handleTypeDef.Instance = USART1;
+    handleTypeDef.Init.BaudRate = 9600;
+    handleTypeDef.Init.StopBits = UART_STOPBITS_1;
+    handleTypeDef.Init.Parity = UART_PARITY_NONE;
+    handleTypeDef.Init.WordLength = UART_WORDLENGTH_8B;
+    handleTypeDef.Init.OverSampling = UART_OVERSAMPLING_16;
+    handleTypeDef.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    handleTypeDef.Init.Mode = UART_MODE_TX_RX;
+    HAL_UART_Init(&handleTypeDef);
 
     char string[] = "开始输出:";
     printf("%s\n", string);
@@ -50,13 +50,13 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
 }
 
 int __io_putchar(int ch) {
-    HAL_UART_Transmit(&uartHandleTypeDef, (uint8_t *) &ch, 1, 0xffff);
+    HAL_UART_Transmit(&handleTypeDef, (uint8_t *) &ch, 1, 0xffff);
     return ch;
 }
 
 int __io_getchar(void) {
     char ch;
-    HAL_UART_Receive(&uartHandleTypeDef, (uint8_t *) &ch, 1, 0xffff);
+    HAL_UART_Receive(&handleTypeDef, (uint8_t *) &ch, 1, 0xffff);
     return ch;
 }
 

@@ -50,6 +50,11 @@
 #define INIT init();
 #define START start();
 
+#elif defined __USART_DMA_DMA_USE__ /*日志打印*/
+#include "7dma-dma/dma_dma.h"
+#define INIT init();
+#define START start();
+
 #endif
 
 #endif //LEARN_TITLE_H

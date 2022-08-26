@@ -6,6 +6,6 @@
 #define LEARN_ROOT_SELECT_H
 
 /* 选择功能 */
-#define __USART_PRINT_USE__
+#define __USART_DMA_DMA_USE__
 
 #endif //LEARN_ROOT_SELECT_H

@@ -8,7 +8,7 @@
 
 #include "string.h"
 
-UART_HandleTypeDef uartHandleTypeDef = {0};
+UART_HandleTypeDef handleTypeDef = {0};
 
 uint8_t data;
 
@@ -21,13 +21,13 @@ void deviceHandle() {
     memcpy(txBuf, "这是一个串口中断接收回显实验\n", 100);
 
     // 把数据传输到指定的地址
-    HAL_UART_Transmit(&uartHandleTypeDef, txBuf, strlen((char *) txBuf), 1000);
+    HAL_UART_Transmit(&handleTypeDef, txBuf, strlen((char *) txBuf), 1000);
 
     memcpy(txBuf, "输入数据并以回车键结束\n", 100);
-    HAL_UART_Transmit(&uartHandleTypeDef, txBuf, strlen((char *) txBuf), 1000);
+    HAL_UART_Transmit(&handleTypeDef, txBuf, strlen((char *) txBuf), 1000);
 
     // 接收数据中断并进入回调函数
-    HAL_StatusTypeDef status = HAL_UART_Receive_IT(&uartHandleTypeDef, &data, 1);
+    HAL_StatusTypeDef status = HAL_UART_Receive_IT(&handleTypeDef, &data, 1);
     if (status == HAL_OK){
         i = 1;
     } else if (status == HAL_ERROR) {
@@ -49,15 +49,15 @@ void init() {
     __HAL_RCC_USART1_CLK_ENABLE();
 
     // 2.设置USART的工作模式
-    uartHandleTypeDef.Instance = USART1;
-    uartHandleTypeDef.Init.BaudRate = 9600;
-    uartHandleTypeDef.Init.Parity = USART_PARITY_NONE;
-    uartHandleTypeDef.Init.StopBits = USART_STOPBITS_1;
-    uartHandleTypeDef.Init.WordLength = USART_WORDLENGTH_8B;
-    uartHandleTypeDef.Init.Mode = USART_MODE_TX_RX;
-    uartHandleTypeDef.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-    uartHandleTypeDef.Init.OverSampling = UART_OVERSAMPLING_16;
-    HAL_UART_Init(&uartHandleTypeDef);
+    handleTypeDef.Instance = USART1;
+    handleTypeDef.Init.BaudRate = 9600;
+    handleTypeDef.Init.Parity = USART_PARITY_NONE;
+    handleTypeDef.Init.StopBits = USART_STOPBITS_1;
+    handleTypeDef.Init.WordLength = USART_WORDLENGTH_8B;
+    handleTypeDef.Init.Mode = USART_MODE_TX_RX;
+    handleTypeDef.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    handleTypeDef.Init.OverSampling = UART_OVERSAMPLING_16;
+    HAL_UART_Init(&handleTypeDef);
 
     // 3.配置中断优先级组,系统默认是第四个，即四位最高可配置15
     HAL_NVIC_SetPriority(USART1_IRQn, 7, 0);
@@ -108,7 +108,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
  * 回调中断函数
  */
 void USART1_IRQHandler() {
-    HAL_UART_IRQHandler(&uartHandleTypeDef);
+    HAL_UART_IRQHandler(&handleTypeDef);
 }
 
 /**
