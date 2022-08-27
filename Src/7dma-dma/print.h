@@ -1,5 +1,5 @@
 //
-// Created by ZlqPC on 2022/7/30.
+// Created by ZlqPC on 2022/7/24.
 //
 
 #include "root_select.h"
@@ -9,10 +9,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "stm32f1xx_hal.h"
-#include "print.h"
 
-void init(void);
-
-void start(void);
+void initPrint();
 
 #endif
