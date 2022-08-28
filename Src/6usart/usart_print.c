@@ -6,7 +6,7 @@
 
 #if defined __USART_PRINT_USE__
 
-UART_HandleTypeDef uartHandleTypeDef;
+UART_HandleTypeDef handleTypeDef;
 GPIO_InitTypeDef gpioInitTypeDef;
 
 // 初始化串口
