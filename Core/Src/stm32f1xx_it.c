@@ -200,14 +200,18 @@ void SysTick_Handler(void)
 
 /* USER CODE BEGIN 1 */
 __weak void EXTI0_IRQHandler(){
-    UNUSED(GPIO_PIN_0);
+    assert_failed((uint8_t *)__FILE__, __LINE__);
 }
 
 __weak void EXTI15_10_IRQHandler(){
-    UNUSED(GPIO_PIN_0);
+    assert_failed((uint8_t *)__FILE__, __LINE__);
 }
 
 __weak void USART1_IRQHandler() {
-    UNUSED(GPIO_PIN_0);
+    assert_failed((uint8_t *)__FILE__, __LINE__);
+}
+
+__weak void DMA1_Channel1_IRQHandler() {
+    assert_failed((uint8_t *)__FILE__, __LINE__);
 }
 /* USER CODE END 1 */

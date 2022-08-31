@@ -55,6 +55,11 @@
 #define INIT init();
 #define START start();
 
+#elif defined __USART_DMA_USART_USE__ /*日志打印*/
+#include "8dma-usart/usart.h"
+#define INIT init();
+#define START start();
+
 #endif
 
 #endif //LEARN_TITLE_H
