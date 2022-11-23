@@ -17,7 +17,7 @@ void init() {
     initUsart();
     UART_HandleTypeDef handleTypeDef = getUart();
     for (int i = 0; i < SEND_BUFF_SIZE; i++) {
-        aTxBuffer[i] = 'D';
+        aTxBuffer[i] = 0x99;
     }
     HAL_StatusTypeDef statusTypeDef = HAL_UART_Transmit_DMA(&handleTypeDef, aTxBuffer, SEND_BUFF_SIZE);
     switch (statusTypeDef) {
@@ -47,7 +47,7 @@ void CallBack( DMA_HandleTypeDef * _hdma){
 
 void callInit(UART_HandleTypeDef *huart) {
     __HAL_RCC_DMA1_CLK_ENABLE();
-    learnDma.Instance = DMA1_Channel1;
+    learnDma.Instance = DMA1_Channel4;
     learnDma.Init.Mode = DMA_CIRCULAR;
     learnDma.Init.Priority = DMA_PRIORITY_VERY_HIGH;
     learnDma.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
@@ -57,9 +57,14 @@ void callInit(UART_HandleTypeDef *huart) {
     learnDma.Init.Direction = DMA_MEMORY_TO_PERIPH;
     HAL_DMA_Init(&learnDma);
     __HAL_LINKDMA(huart, hdmatx, learnDma);
-    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 8, 0);
-    HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+    HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 8, 0);
+    HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
     HAL_DMA_RegisterCallback(&learnDma, HAL_DMA_XFER_ERROR_CB_ID, CallBack);
+}
+
+
+void DMA1_Channel4_IRQHandler(){
+    HAL_DMA_IRQHandler(&learnDma);
 }
 
 void callDeInit(UART_HandleTypeDef *huart) {
